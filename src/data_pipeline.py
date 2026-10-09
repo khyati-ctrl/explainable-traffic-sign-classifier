@@ -138,3 +138,37 @@ val_loader = DataLoader(
     batch_size=32,
     shuffle=False
 )
+
+# CHECK A BATCH
+images, labels = next(iter(train_loader))
+
+print("\nBatch information:")
+print("Image shape:", images.shape)
+print("Labels shape:", labels.shape)
+
+# VISUALIZE AUGMENTED IMAGES
+
+# Normalized images need to be converted back before displaying them.
+
+images = images[:8]
+mean = torch.tensor(
+    [0.485, 0.456, 0.406]
+).view(3, 1, 1)
+
+std = torch.tensor(
+    [0.229, 0.224, 0.225]
+).view(3, 1, 1)
+
+images = images * std + mean # This reverses the normalization approximately
+images = images.permute(0, 2, 3, 1)
+
+plt.figure(figsize=(12, 6)) # Creates the figure where our images will be displayed.
+
+for i in range(8):
+    plt.subplot(2, 4, i + 1)
+    plt.imshow(images[i].clamp(0, 1))
+    plt.title(f"Class: {labels[i].item()}")
+    plt.axis("off")
+
+plt.tight_layout()
+plt.show()
