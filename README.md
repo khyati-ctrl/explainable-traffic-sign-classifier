@@ -121,13 +121,21 @@ The current training/validation split is random at the image level. Related imag
 ## Project Structure
 explainable-traffic-sign-classifier/
 ├── data/
+
 │   ├── Train/
+
 │   └── Test/
+
 ├── src/
+
 │   └── data_pipeline.py
+
 ├── README.md
+
 ├── requirements.txt
+
 └── .gitignore
+
 
 
 ## Future Scope
