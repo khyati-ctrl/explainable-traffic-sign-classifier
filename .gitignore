@@ -3,3 +3,10 @@ __pycache__/
 venv/
 .env
 .ipynb_checkpoints/
+
+
+# Dataset
+data/Train/
+data/Test/
+data/Meta/
+data/*.csv
