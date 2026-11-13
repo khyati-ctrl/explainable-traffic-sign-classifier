@@ -139,36 +139,40 @@ val_loader = DataLoader(
     shuffle=False
 )
 
-# CHECK A BATCH
-images, labels = next(iter(train_loader))
+if __name__ == "__main__":
 
-print("\nBatch information:")
-print("Image shape:", images.shape)
-print("Labels shape:", labels.shape)
+        
+    # CHECK A BATCH
+    images, labels = next(iter(train_loader))
 
-# VISUALIZE AUGMENTED IMAGES
+    print("\nBatch information:")
+    print("Image shape:", images.shape)
+    print("Labels shape:", labels.shape)
 
-# Normalized images need to be converted back before displaying them.
+    # VISUALIZE AUGMENTED IMAGES
 
-images = images[:8]
-mean = torch.tensor(
-    [0.485, 0.456, 0.406]
-).view(3, 1, 1)
+    # Normalized images need to be converted back before displaying them.
 
-std = torch.tensor(
-    [0.229, 0.224, 0.225]
-).view(3, 1, 1)
+    images = images[:8]
 
-images = images * std + mean # This reverses the normalization approximately
-images = images.permute(0, 2, 3, 1)
+    mean = torch.tensor(
+        [0.485, 0.456, 0.406]
+    ).view(3, 1, 1)
 
-plt.figure(figsize=(12, 6)) # Creates the figure where our images will be displayed.
+    std = torch.tensor(
+        [0.229, 0.224, 0.225]
+    ).view(3, 1, 1)
 
-for i in range(8):
-    plt.subplot(2, 4, i + 1)
-    plt.imshow(images[i].clamp(0, 1))
-    plt.title(f"Class: {labels[i].item()}")
-    plt.axis("off")
+    images = images * std + mean # This reverses the normalization approximately
+    images = images.permute(0, 2, 3, 1)
 
-plt.tight_layout()
-plt.show()
+    plt.figure(figsize=(12, 6)) # Creates the figure where our images will be displayed.
+
+    for i in range(8):
+        plt.subplot(2, 4, i + 1)
+        plt.imshow(images[i].clamp(0, 1))
+        plt.title(f"Class: {labels[i].item()}")
+        plt.axis("off")
+
+    plt.tight_layout()
+    plt.show()
